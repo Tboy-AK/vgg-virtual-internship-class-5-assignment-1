@@ -48,11 +48,12 @@ def question_2():
     numbers = []
     index = 1
     for i in range(length):
-        n = input(str(index) + ': ')
-        if not n.isnumeric():
+        try:
+            n = float(input(str(index) + ': '))
+        except ValueError:
             err_countdown.append(1)
             print('\nERROR Expected an integer input' +
-                  '\nNumber of retries ' + str(len(err_countdown)))
+                '\nNumber of retries ' + str(len(err_countdown)))
             if len(err_countdown) == 3:
                 return print('\nRetries exhausted')
             return question_2()
@@ -66,6 +67,8 @@ def check_prime(n):
     """
     This function accepts a number and checks if it is a prime number
     """
+    if n == 0:
+        return print('0 is not a suitable integer for this concept')
     for i in range(2, n):
         if n < 3 or n % i == 0:
             return print('\n' + str(n) + ' is NOT a prime number')
